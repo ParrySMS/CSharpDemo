@@ -2,7 +2,9 @@
 - 编译命令
 
 linux（安装mono）: `mcs demo.cs `
+
 win :  `csc demo.cs`
+
 `./demo.exe `
 
 
@@ -62,8 +64,10 @@ Console.WriteLine(d.ToString()); //变量.ToXXXX()
 
 -  引用类型（Reference types）
 
-内置的 引用类型有：**object、dynamic 和 string **
+内置的 引用类型有：**object、dynamic 和 string**
+
 用户自定义引用类型有：**class、interface 或 delegate**
+
 ```C#
 //所有数据类型的终极基类 可以被分配任何其他类型
 object obj = 100; // 这是装箱
@@ -85,6 +89,7 @@ string str = @"<script type=""text/javascript"">
 ```
 
 - 可空类型（Nullable）：给赋值域增加一个 `null`, 声明加多一个`?`即可
+
 ```C#
 int? num1 = null;
 int? num2 = 45;
@@ -92,6 +97,7 @@ double? num3 = new double?();
 double? num4 = 3.14157;
 ```
 - Null 合并运算符（ ?? ） :  `非空条件返回原本值？？空条件返回值`
+
 ```C#
 double? num1 = null;
 double? data;
@@ -114,7 +120,8 @@ char[] ch = new char[]{'A','B','C'}; //有具体内容可以不指示长度
 char[] ch = new char[3]{'A','B','C'}; //等价
 ```
 
-- 多维数组 : 整个定义的全部向量空间值，
+- 多维数组 : 整个定义的全部向量空间值集合
+
 ```C#
 int[,] arr = new int[2,3]; //元素索引从[0,0]到[1,2]
 int len0 = arr.GetLength(0); //第0维长度=2
@@ -129,6 +136,7 @@ int[, ,] muarr = new int[2, 2, 3]//元素索引从[0,0,0] 到[1,1,2]
 ```
 
 - 交错数组:  数组的数组，逐层的一维指向。
+
 ```C#
 
 int[][] a = new int[3][]; 
@@ -153,6 +161,7 @@ foreach(int x in num){
 ```
 
 - 字符串
+
 ```C#
  //通过使用 string 构造函数 传入字符数组
 char[] letters = { 'H', 'e', 'l', 'l','o' };
@@ -168,6 +177,15 @@ DateTime dt = new DateTime(2017,4,1,13,16,32,108);
 dt.ToString("yyyy/MM/dd HH:mm:ss.fff");　//2017/04/01 13:16:32.108
 dt.ToString("yyyy/MM/dd dddd");　　　　　　//2017/04/01 星期六
 ```
+
+- 枚举（Enum）
+枚举列表中的每个符号代表一个整数值，一个比它前面的符号大的整数值。默认情况下，第一个枚举符号的值是 0
+
+```C#
+enum Days { Sun, Mon, tue, Wed, thu, Fri, Sat };
+int x = (int)Day.Sun; //5
+```
+
 - 结构体
   - 值类型，存储在栈中。描述一个轻量级对象的时候，结构可提高效率。
   - 可带有方法、字段、索引、属性、运算符方法和事件。
@@ -177,6 +195,7 @@ dt.ToString("yyyy/MM/dd dddd");　　　　　　//2017/04/01 星期六
   - 直接实例化，使用 **New** 创建则会自动赋值默认值，不用 **New** 则需要自行初始化全部字段才能被使用。
   - 不支持继承
   - 成员不能指定为 abstract、virtual 或 protected
+  
 ```C#
 struct Books
 {
@@ -195,25 +214,34 @@ struct Books
 
 
 ```
-- 类
+- 类: 
+	- 引用类型，它在堆中分配空间，栈中保存的只是引用。
+	- 类的默认访问标识符是 internal，成员的默认访问标识符是 private。
+	- 构造函数, 析构函数同C++
+	- 单继承，支持继承 **class + interface** 
+
 ```C#
 using System;
 namespace RectangleApplication 
 {
     class Rectangle
     {
-        // 成员变量
         double length;
         double width;
+        public Rectangle(){  Console.WriteLine("default"); }
+        public Rectangle(double l,double w){  
+            length = l;    
+            width = w;
+            Console.WriteLine("Params");
+        }
+        ~Rectangle(){ Console.WriteLine("destruction"); }
+        
         public void Acceptdetails()
         {
             length = 4.5;    
             width = 3.5;
         }
-        public double GetArea()
-        {
-            return length * width;
-        }
+        public double GetArea(){ return length * width; }
         public void Display()
         {
             Console.WriteLine("Length: {0}", length);
@@ -235,7 +263,6 @@ namespace RectangleApplication
 }
 ```
 
-
 - 访问修饰符: (默认private)
 
   - public：所有对象都可以访问；
@@ -244,8 +271,20 @@ namespace RectangleApplication
   - **internal**：同一个程序集的对象可以访问；（允许一个类将其成员变量和成员函数暴露给当前程序中的其他函数和对象，暴露给调用者）
   - **protected internal**：访问限于当前程序集或派生自包含类的类型。
 
-  
+- 类静态成员  **static** ，实例化对象只有同一个类静态成员副本。
 
+- 父类对象成员由子类调用父类构造来初始化。
+
+```C#
+class Tabletop : Rectangle
+{
+   private double cost;
+   public Tabletop(double l, double w) : base(l, w) { ... }
+}
+```
+
+- 创建子类对象调用子类的构造函数时，默认调用父类的无参构造函数。
+- 继承 **class + interface**  //todo https://www.runoob.com/csharp/csharp-inheritance.html
 - 引用传递参数
 
 ```C#
