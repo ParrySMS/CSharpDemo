@@ -226,8 +226,8 @@ namespace RectangleApplication
 {
     class Rectangle
     {
-        double length;
-        double width;
+        double length = 1.0;
+        double width = 1.0;
         public Rectangle(){  Console.WriteLine("default"); }
         public Rectangle(double l,double w){  
             length = l;    
@@ -236,11 +236,6 @@ namespace RectangleApplication
         }
         ~Rectangle(){ Console.WriteLine("destruction"); }
         
-        public void Acceptdetails()
-        {
-            length = 4.5;    
-            width = 3.5;
-        }
         public double GetArea(){ return length * width; }
         public void Display()
         {
@@ -255,12 +250,18 @@ namespace RectangleApplication
         static void Main(string[] args)   //Main方法是在类里的
         {
             Rectangle r = new Rectangle(); //实例化对象 new 类名()
-            r.Acceptdetails();
             r.Display();
             Console.ReadLine();
         }
     }
 }
+```
+
+- 继承 **class + interface**  
+```C#
+class Shape { ... }
+public interface PaintCost{ ... }
+class Rectangle : Shape, PaintCost {...}
 ```
 
 - 访问修饰符: (默认private)
@@ -270,9 +271,8 @@ namespace RectangleApplication
   - protected：只有该类对象及其子类对象可以访问
   - **internal**：同一个程序集的对象可以访问；（允许一个类将其成员变量和成员函数暴露给当前程序中的其他函数和对象，暴露给调用者）
   - **protected internal**：访问限于当前程序集或派生自包含类的类型。
-
 - 类静态成员  **static** ，实例化对象只有同一个类静态成员副本。
-
+- 创建子类对象调用子类的构造函数时，默认调用父类的无参构造函数。
 - 父类对象成员由子类调用父类构造来初始化。
 
 ```C#
@@ -283,9 +283,82 @@ class Tabletop : Rectangle
 }
 ```
 
-- 创建子类对象调用子类的构造函数时，默认调用父类的无参构造函数。
-- 继承 **class + interface**  //todo https://www.runoob.com/csharp/csharp-inheritance.html
-- 引用传递参数
+- 多态
+  - 静态：函数重载，运算符重载
+  - 动态：抽象类，虚方法
+
+- 函数重载 ：同名多定义
+
+- 运算符重载： 
+```C#
+    class Box
+    {
+       private double length;     
+       private double breadth;     
+       private double height;  
+       //类内定义静态的运算符重载 二元运算
+       public static Box operator+ (Box b, Box c)
+       { 
+          Box box = new Box();
+          box.length = b.length + c.length;
+          box.breadth = b.breadth + c.breadth;
+          box.height = b.height + c.height;
+          return box;
+       }
+    }
+```
+
+- 抽象类
+	- 抽象方法必须在类内定义
+	- 只能被继承，只有定义而不能实例化
+	- 不能声明为 `sealed` 密封类(不可继承类)
+	- 子类使用 `override`  实现抽象方法
+
+```C#
+   abstract class Shape
+   {
+       abstract public int area();
+   }
+   
+   class Rectangle:  Shape
+   {
+     public override int area () { ... }
+   }
+```
+
+- 虚方法 ： 当有一个定义在类中的函数需要在继承类中实现时，可以使用虚方法
+	- 运行时调用
+	- 子类使用 `override`  实现虚方法
+```C#
+
+public class Shape
+{
+    public int X { get; private set; }
+    public int Y { get; private set; }
+    public int Height { get; set; }
+    public int Width { get; set; }
+   
+    // 虚方法 可以有实现
+    public virtual void Draw()
+    {
+        Console.WriteLine("draw");
+    }
+}
+
+class Circle : Shape
+{
+    //重载的实现
+    public override void Draw()
+    {
+        base.Draw();
+        Console.WriteLine("---Circle");
+    }
+}
+```
+
+- 接口（Interface） //todo https://www.runoob.com/csharp/csharp-interface.html
+
+- 引用传递参数: 引用传递必须要是已经赋值的内容
 
 ```C#
   public void swap(ref int x, ref int y){...}
