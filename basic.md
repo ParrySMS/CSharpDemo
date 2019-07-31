@@ -290,6 +290,7 @@ class Tabletop : Rectangle
 - 函数重载 ：同名多定义
 
 - 运算符重载： 
+
 ```C#
     class Box
     {
@@ -329,6 +330,7 @@ class Tabletop : Rectangle
 - 虚方法 ： 当有一个定义在类中的函数需要在继承类中实现时，可以使用虚方法
 	- 运行时调用
 	- 子类使用 `override`  实现虚方法
+	
 ```C#
 
 public class Shape
@@ -356,7 +358,33 @@ class Circle : Shape
 }
 ```
 
-- 接口（Interface） //todo https://www.runoob.com/csharp/csharp-interface.html
+- 接口（Interface） 
+	- 接口以 I 字母开头
+	- 定义可以没有参数和返回值
+	- 接口 Interface 可以继承其他接口
+	- class 继承直接实现
+	
+```C#
+
+interface IParent
+{
+    void IParentMethod();
+}
+
+interface ISon : IParent
+{
+    void ISonMethod();
+}
+
+class Implementer : ISon
+{
+	pubilc void IParentMethod(...){...}
+	pubilc void ISonMethod(...){...}
+}
+
+```
+
+
 
 - 引用传递参数: 引用传递必须要是已经赋值的内容
 
@@ -421,4 +449,179 @@ namespace CalculatorApplication
 }
 ```
 
+- 命名空间
 
+命名空间可以被嵌套,使用点（.）运算符访问
+
+```C#
+using first_space; //using指令：引入命名空间
+
+namespace first_space
+{
+   // classA  func1
+}
+
+class Test{
+  static void Main(string[] args){
+    first_space.classA fc = new first_space.classA();
+    //使用 using 命名空间指令，这样在使用的时候就不用在前面加上命名空间名称
+    classA fc = new classA();
+  
+  }
+}
+```
+
+- using static 指令：指定无需指定类型名称即可访问其静态成员的类型
+
+`using static System.Math; var = PI; // 直接使用System.Math.PI`
+
+- using 起别名
+
+`using Project = PC.MyCompany.Project;`
+
+- using语句：将实例与代码绑定
+
+```C#
+//todo 没太懂
+using (Font Ari10 = new Font("Arial", 10.0f), Ari12 = new Font("Arial", 12.0f))
+{
+    // Use Ari10 and Ari12.
+}
+//代码段结束时，自动调用font3和font4的Dispose方法，释放实例。
+```
+
+- 预处理指令： 类似C++
+
+`#define #undef #if #else #elif #endif #line #error #warning #region #endregion`
+
+- 正则： [https://www.runoob.com/csharp/csharp-regular-expressions.html](https://www.runoob.com/csharp/csharp-regular-expressions.html)
+
+```C#
+       string expr = @"\bS\S*";
+       MatchCollection mc = Regex.Matches(text, expr);
+       foreach (Match m in mc)
+       {
+            Console.WriteLine(m);
+       }
+```
+
+- 异常处理: [https://www.runoob.com/csharp/csharp-exception-handling.html](https://www.runoob.com/csharp/csharp-exception-handling.html)
+
+Sytem.SystemException 类的预定义的异常类:
+
+```
+IO.IOException 
+IndexOutOfRangeException 
+ArrayTypeMismatchException 
+NullReferenceException 
+DivideByZeroException 
+InvalidCastException 
+OutOfMemoryException 
+StackOverflowException
+```
+
+```C#
+
+try{
+   // logic code
+    throw (new TempIsZeroException("Zero Temperature found"));
+	
+}catch( ExceptionName e1 ){
+   
+}catch( ExceptionName eN ){
+   
+}finally{
+   
+}
+
+
+//继承自定义Exception
+public class MyException: ApplicationException
+{
+   public MyException(string message): base(message)
+   {
+      //code
+   }
+}
+
+```
+
+-  文件流读写
+
+```C#
+FileStream Fs = new FileStream("test.dat", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+
+Fs.WriteByte((byte)data);		
+Fs.ReadByte();			
+```
+
+- 指针: 当一个代码块使用 unsafe 修饰符标记时，C# 允许在函数中使用指针变量
+
+```C#
+static unsafe void Main(string[] args){
+  int* p1, p2, p3;     // 正确  * 仅与基础类型一起写入
+  int *p1, *p2, *p3;   // 错误 
+}
+
+//声明方法的一部分作为不安全代码
+static void Main(string[] args){
+  unsafe{
+    //use type*
+	....
+  }
+}
+```
+
+- 特性（Attribute）：在运行时传递程序中各种元素（比如类、方法、结构、枚举、组件等）的行为信息
+
+- 反射（Reflection）：访问、检测和修改它本身状态或行为
+
+- 属性（Property）：使用`.`调用 public 访问器(accessor) 实现成员访问
+
+- 索引器（Indexer）：允许对象成为虚拟数组（virtual array）被索引，使用 get 和 set 访问器来定义索引器
+
+- 委托（Delegate）：存有对某个方法的引用的一种引用类型变量。引用可在运行时被改变。特别用于实现事件和回调方法。所有的委托（Delegate）都派生自 System.Delegate 类。
+
+- 事件（Event）： 线程通信，事件在类中声明且生成，且通过使用同一个类或其他类中的委托与事件处理程序关联
+
+- 集合（Collection）：各种常用的 System.Collection 命名空间的类
+	- [动态数组（ArrayList）](https://www.runoob.com/csharp/csharp-arraylist.html)
+	- [哈希表（Hashtable）](https://www.runoob.com/csharp/csharp-hashtable.html)
+	- [排序列表（SortedList）](https://www.runoob.com/csharp/csharp-sortedlist.html)
+	- [栈（Stack）](https://www.runoob.com/csharp/csharp-stack.html)
+	- [队列（Queue）](https://www.runoob.com/csharp/csharp-queue.html)
+	- [点阵列（BitArray）](https://www.runoob.com/csharp/csharp-bitarray.html)
+	
+- 泛型（Generic）: 运行时编写类或方法中的编程元素的数据类型
+
+```C# 
+public class MyGenericArray<T> { 
+    private T data; 
+	pubilc T func(T input){...}
+} 
+```
+
+- 匿名方法（Anonymous methods）:使用 delegate 关键字创建委托实例
+
+```C#
+delegate void funcA(int n);
+
+...
+
+funcA outputX = delegate(int x) { 
+  Console.WriteLine("Anonymous Method: {0}", x);
+};
+
+outputX(100);
+```
+
+- 线程：
+线程生命周期开始于 `System.Threading.Thread` 类的对象被创建时，结束于线程被终止或完成执行时。
+下面列出了线程生命周期中的各种状态：
+	- 未启动状态：当线程实例被创建但 Start 方法未被调用时的状况。
+	- 就绪状态：当线程准备好运行并等待 CPU 周期时的状况。
+	- 不可运行状态：下面的几种情况下线程是不可运行的
+		- 已经调用 Sleep 方法
+		- 已经调用 Wait 方法
+		- 通过 I/O 操作阻塞
+	- 死亡状态：当线程已完成执行或已中止时的状况。
