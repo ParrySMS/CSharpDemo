@@ -625,3 +625,23 @@ outputX(100);
 		- 已经调用 Wait 方法
 		- 通过 I/O 操作阻塞
 	- 死亡状态：当线程已完成执行或已中止时的状况。
+
+- 单元测试
+```C#
+namespace Solution 
+{
+  using NUnit.Framework;
+  using System;
+
+  [TestFixture]
+  public class SolutionTest
+  {
+    [Test]
+    public void SampleTest()
+    {
+      Assert.AreEqual(true, Kata.IsNice(new int[] {2,10,9,3}));
+      Assert.AreEqual(false, Kata.IsNice(new int[] {3,4,5,7}));
+    }
+  }
+}
+```
