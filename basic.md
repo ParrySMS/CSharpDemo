@@ -2,12 +2,11 @@
 
 linux（安装mono）:
 
- `mcs demo.cs `
+`mcs demo.cs `
 
-win :  
 
+win : 
 `csc demo.cs`
-
 `./demo.exe `
 
 
@@ -648,3 +647,4 @@ namespace Solution
   }
 }
 ```
+
