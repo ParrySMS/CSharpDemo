@@ -1,12 +1,15 @@
 >转自: http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html
+>
 >作者： 阮一峰
+>
 >日期： 2015年12月 9日
+>
 >版权声明：自由转载-非商用-非衍生-保持署名（[创意共享3.0许可证](http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh)）
-
+>
 
 # 常用 Git 命令清单
 
-![bg2015120901](.\assets\bg2015120901.png)
+![bg2015120901](https://github.com/ParrySMS/CSharpDemo/blob/master/assets/bg2015120901.png)
 
 
 
