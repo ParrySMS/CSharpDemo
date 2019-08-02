@@ -1,9 +1,12 @@
-
 - 编译命令
 
-linux（安装mono）: `mcs demo.cs `
+linux（安装mono）:
 
-win :  `csc demo.cs`
+ `mcs demo.cs `
+
+win :  
+
+`csc demo.cs`
 
 `./demo.exe `
 
