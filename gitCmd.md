@@ -303,3 +303,33 @@ $ git revert [commit]
 $ git stash
 $ git stash pop
 ```
+
+## connecting local to remote
+```
+# 多用户则在具体目录下单独配置 不要加 --global
+git config [--global] user.name "[name]"
+git config [--global] user.email "[email address]"
+ssh-keygen -t rsa -C "[email address]"
+
+cd ~/.ssh/ 
+cat id_rsa.pub
+# 到远程仓库账户设置里添加ssh密钥 建立空项目获取远程仓库url
+
+# 情况1：如果已有本地文件 到目录内
+git init
+git add <file>
+git commit <file>
+git remote add origin [url]
+git push --set-upstream origin [branch 一般是master]
+
+# 情况2：克隆到本地
+git clone [url]
+
+
+
+
+
+
+
+
+```
