@@ -46,7 +46,6 @@ $ git config [--global] user.email "[email address]"
 ```
 # 为A用户生成SSH,文件地址在 ~/.ssh/
 ssh-keygen -t rsa -C "[email address]"
-
 ```
 
 ## add & rm
@@ -315,21 +314,14 @@ cd ~/.ssh/
 cat id_rsa.pub
 # 到远程仓库账户设置里添加ssh密钥 建立空项目获取远程仓库url
 
-# 情况1：如果已有本地文件 到目录内
+# 情况1：如果已有本地文件 到目录内初始化 commit到本地分支 push到远程
 git init
 git add <file>
 git commit <file>
 git remote add origin [url]
+# 第一次push需要设置 之后就直接push即可
 git push --set-upstream origin [branch 一般是master]
 
-# 情况2：克隆到本地
+# 情况2：如果本地空 从远程克隆到本地
 git clone [url]
-
-
-
-
-
-
-
-
 ```
