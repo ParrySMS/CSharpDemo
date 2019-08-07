@@ -36,6 +36,9 @@ $ git config --list
 # 编辑Git配置文件 （多用户则不要加 --global）
 $ git config -e [--global]
 
+# 重置全局设置 删除原来的全局
+git config --global --unset user.name
+
 # 设置提交代码时的用户信息
 $ git config [--global] user.name "[name]"
 $ git config [--global] user.email "[email address]"
