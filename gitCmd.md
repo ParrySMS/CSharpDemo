@@ -328,11 +328,14 @@ git push --set-upstream origin [branch 一般是master]
 # 情况2：如果本地空 从远程克隆到本地
 git clone [url]
 
-# 新建属于自己的开发分支
+# 新建属于自己的开发分支并切换过去
+$ git branch -a
 $ git checkout -b dev_xxxxx
+# 与指定的远程分支建立追踪关系
+$ git branch --track [branch] [remote-branch]
 
 # 保持本地以及自己分支是最新的： 从远程主开发分支dev 先合并到自己分支，再pull到本地
 $ git fetch
 $ git merge origin/dev
-$ git pull
+$ git push
 ```
