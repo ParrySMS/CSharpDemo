@@ -334,6 +334,7 @@ $ git checkout -b 本地分支名 origin/远程分支名
 
 # 保持本地以及自己分支是最新的： 从远程主开发分支dev 先合并到自己本地分支，再push到自己远程分支
 $ git fetch
-$ git merge origin/dev
+$ git diff 本地分支 origin/远程分支
+$ git merge origin/远程分支
 $ git push
 ```
