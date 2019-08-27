@@ -140,4 +140,59 @@ namespace Stu
 }
 ```
 
+- 匿名类型
+	- var 关键字 ： 类型推断
 
+```
+var people = new {Name="Tim",Age=13};
+var bot = new {Name="Bot",Age=0};
+//// same var obj type
+people = bot;
+```
+
+- 个数可变的参数
+
+```
+//// set some params into int[] data
+public int sum(params int[] data)
+{
+	int res = 0;
+	foreach(int x in data){
+		res += x;
+	}
+	return res;
+}
+
+//// use it
+int res1 = sum(1,23,2);
+int res2 = sum(1,2,3,6,2,3,7,9,1);
+```
+
+- 构造函数
+	
+	- 构造函数没有返回类型，如果没有构造，系统会生成一个默认的，将会把成员字段初始化成标准的默认值。	
+	- 构造函数初始化器件 
+
+```
+// __construct
+public Car(string desc, int wheel){...}
+public Car(string desc):this(desc,4){} 
+//// --> use original __construct
+```
+	- 可以给类写无参的静态构造函数，使其只执行一次。原因是有一些字段和属性，在第一次使用类之前需要从外部来初始化。
+	- 静态构造不会被显式调用，只是加载时由 .NET 库运行。
+
+
+- 参数修饰符
+	- ref 引用传递
+	- out 无需初始化的结果返回
+	- in 值类型保证数据不变
+	
+- 可空类型
+
+引用类型的值可以为空，值类型的变量不能空。所以可以使用可空类型增加一个null来做取值域，带来的开销是一个确认空的布尔成员。
+
+```
+int? x1 = null;
+int x2 = x1.HasValue ? x1.Value : 0;
+```
