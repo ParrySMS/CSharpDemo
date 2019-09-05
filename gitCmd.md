@@ -322,8 +322,11 @@ git init
 git add <file>
 git commit <file>
 git remote add origin [url]
+# 开新分支之后 推送出一个远程新分支或推到其他分支
+git push origin 本地新分支:远程分支名
 # 第一次push需要设置 之后就直接push即可
 git push --set-upstream origin [branch 一般是master]
+
 
 # 情况2：如果本地空 从远程克隆到本地
 git clone [url]
