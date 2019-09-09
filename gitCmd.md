@@ -340,4 +340,17 @@ $ git fetch
 $ git diff 本地分支 origin/远程分支
 $ git merge origin/远程分支
 $ git push
+
+# 更换密码之后重新授权
+
+# 法1 ssh链接，重新生成rsa，到远程仓库账户设置里添加ssh密钥
+# 法2 https连接 更新 credential.helper
+# 	使用命令
+$ git config [--global] --replace-all user.email "[email]" 
+$ git config [--global] --replace-all user.name "[name]"
+
+# 或者在控制面板操作
+控制面板\用户账户\凭证管理器 --- 在凭证中找到 git:xxxxx[项目地址]，单击，编辑，修改新密码
+
+Control Panel\User Accounts\Credential Manager --- found `git:xxxxx[remote url]` in credential, click and edit the new password
 ```
