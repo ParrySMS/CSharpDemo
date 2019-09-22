@@ -353,4 +353,10 @@ $ git config [--global] --replace-all user.name "[name]"
 控制面板\用户账户\凭证管理器 --- 在凭证中找到 git:xxxxx[项目地址]，单击，编辑，修改新密码
 
 Control Panel\User Accounts\Credential Manager --- found `git:xxxxx[remote url]` in credential, click and edit the new password
+
+
+# 清除未commit但不小心添加了add追踪的文件
+# 停止追踪指定文件，但该文件会保留在工作区
+$ git rm --cached [file]
+$ git rm --cached -r [path]
 ```
