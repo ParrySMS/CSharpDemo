@@ -349,7 +349,7 @@ $ git push
 $ git config [--global] --replace-all user.email "[email]" 
 $ git config [--global] --replace-all user.name "[name]"
 
-# 或者在控制面板操作
+# 法3 win系统在控制面板操作
 控制面板\用户账户\凭证管理器 --- 在凭证中找到 git:xxxxx[项目地址]，单击，编辑，修改新密码
 
 Control Panel\User Accounts\Credential Manager --- found `git:xxxxx[remote url]` in credential, click and edit the new password
