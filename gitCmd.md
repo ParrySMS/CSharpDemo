@@ -359,4 +359,12 @@ Control Panel\User Accounts\Credential Manager --- found `git:xxxxx[remote url]`
 # 停止追踪指定文件，但该文件会保留在工作区
 $ git rm --cached [file]
 $ git rm --cached -r [path]
+
+# 单独回滚某个文件
+git log fileName
+git checkout [commit-code] fileName
+
+# 删除分支
+$ git branch -d [branch-name]
+$ git push origin --delete [branch-name]
 ```
